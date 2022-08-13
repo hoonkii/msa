@@ -22,3 +22,10 @@ eureka:
 
 greeting:
   message: Hello world
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # acuator refresh를 통해 configuration을 라이브하게 업데이트
+        include: refresh, health, beans
