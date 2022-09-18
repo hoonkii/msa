@@ -27,6 +27,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.4'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp:3.1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
 	compileOnly 'org.projectlombok:lombok'
