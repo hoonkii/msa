@@ -1,0 +1,23 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///Users/hoonki/Desktop/git-local-repo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Client 역할도하겠다.
+        include: health, busrefresh
