@@ -9,12 +9,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: file:///Users/hoonki/Desktop/git-local-repo
-
+        native:
+          search-locations: file:///Users/hoonki/Desktop/git-local-repo
 management:
   endpoints:
     web:

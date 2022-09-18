@@ -22,14 +22,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurity {
 
     private final UserService userService;
-
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, OAuth2ResourceServerProperties.Jwt jwt, TokenService tokenService) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
         http.authorizeRequests().antMatchers("/**")
@@ -41,19 +35,8 @@ public class WebSecurity {
     // TODO 최신 버전에 맞게 셋업
     private AuthenticationFilter getAuthenticationFilter() {
         AuthenticationFilter filter = new AuthenticationFilter();
-    //    filter.setAuthenticationManager(authenticationManager());
+//        filter.setAuthenticationManager(authenticationManager());
         return filter;
     }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return null;
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return null;
-    }
-
 
 }

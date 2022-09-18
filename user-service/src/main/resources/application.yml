@@ -2,7 +2,7 @@ server:
   port: 0
 
 spring:
-  applciation:
+  application:
     name: user-service
   rabbitmq:
     host: 127.0.0.1
@@ -26,7 +26,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: https://127.0.0.1:8761/eureka
+      defaultZone: http://127.0.0.1:8761/eureka/
 
 greeting:
   message: Hello world
@@ -35,5 +35,4 @@ management:
   endpoints:
     web:
       exposure:
-        # acuator refresh를 통해 configuration을 라이브하게 업데이트
         include: refresh, health, beans, busrefresh
