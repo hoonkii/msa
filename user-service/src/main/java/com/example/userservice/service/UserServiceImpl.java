@@ -5,15 +5,17 @@ import com.example.userservice.domain.UserRepository;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.vo.OrderResponse;
 import com.example.userservice.vo.UserResponse;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +23,17 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+
+    private final Environment environment;
+
+    private final RestTemplate restTemplate;
+    private final OrderServiceClient orderServiceClient;
 
     @Override
     public UserDto createUser(UserDto userDto) {
@@ -45,9 +53,10 @@ public class UserServiceImpl implements UserService {
 
 
         UserDto userDto = new ModelMapper().map(user, UserDto.class);
-        List<OrderResponse> orders = new ArrayList<>();
-        userDto.setOrders(orders);
-        return null;
+
+        List<OrderResponse> ordersList = orderServiceClient.getOrders(userId);
+        userDto.setOrders(ordersList);
+        return userDto;
     }
 
     @Override
