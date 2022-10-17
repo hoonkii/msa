@@ -15,9 +15,12 @@ public class Order {
     private Long id;
     @Column(nullable = false, length = 120, unique = true)
     private String productId;
-
+    @Column(nullable = false, length = 120)
+    private String userId;
+    @Column(nullable = false, length = 120, unique = true)
+    private String orderId;
     @Column(nullable = false)
-    private Integer quantity;
+    private Integer qty;
     @Column(nullable = false)
     private Integer totalPrice;
     @Column(nullable = false)
