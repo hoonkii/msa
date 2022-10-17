@@ -14,10 +14,15 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
-      path: /h 2-console
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC&characterEncoding=UTF-8
+    username: hoonki
+    password: as789456
 
 eureka:
   instance:
