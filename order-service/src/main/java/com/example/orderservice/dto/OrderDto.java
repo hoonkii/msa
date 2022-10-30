@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Data
 public class OrderDto implements Serializable {
     private String productId;
-    private Integer quantity;
+    private String orderId;
+    private Integer qty;
     private Integer unitPrice;
     private Integer totalPrice;
     private String userId;

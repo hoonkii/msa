@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto createOrder(OrderDto orderDto) {
-        orderDto.setTotalPrice(orderDto.getQuantity() * orderDto.getUnitPrice());
+        orderDto.setTotalPrice(orderDto.getQty() * orderDto.getUnitPrice());
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(STRICT);
 

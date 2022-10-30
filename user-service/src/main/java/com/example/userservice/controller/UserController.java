@@ -1,11 +1,11 @@
 package com.example.userservice.controller;
 
-import com.example.userservice.domain.User;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.service.UserService;
 import com.example.userservice.vo.UserRequest;
 import com.example.userservice.vo.UserResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -30,6 +31,7 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity createUser(@RequestBody UserRequest userRequest) {
+        System.out.println("호출이 되긴했니?");
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         UserDto userDto = mapper.map(userRequest, UserDto.class);
@@ -45,7 +47,9 @@ public class UserController {
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<UserResponse> getUser(@PathVariable("userId") String userId) {
+        log.info("Before call order service");
         UserDto userDto = userService.getUserByUserId(userId);
+        log.info("After call order service");
         UserResponse returnValue = new ModelMapper().map(userDto, UserResponse.class);
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
     }

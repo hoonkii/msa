@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends CrudRepository<UserEntity, String> {
 
-    Optional<User> findByUserId(String userId);
+    Optional<UserEntity> findByUserId(String userId);
 
-    Optional<User> findByEmail(String email);
+    Optional<UserEntity> findByEmail(String email);
 }
